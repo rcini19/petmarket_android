@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing values -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_xl">20dp</dimen>
+    <dimen name="spacing_2xl">24dp</dimen>
+    <dimen name="spacing_3xl">32dp</dimen>
+    <dimen name="spacing_4xl">40dp</dimen>
+
+    <!-- Padding values -->
+    <dimen name="padding_xs">4dp</dimen>
+    <dimen name="padding_sm">8dp</dimen>
+    <dimen name="padding_md">12dp</dimen>
+    <dimen name="padding_lg">16dp</dimen>
+    <dimen name="padding_xl">20dp</dimen>
+    <dimen name="padding_2xl">24dp</dimen>
+
+    <!-- Margin values -->
+    <dimen name="margin_xs">4dp</dimen>
+    <dimen name="margin_sm">8dp</dimen>
+    <dimen name="margin_md">12dp</dimen>
+    <dimen name="margin_lg">16dp</dimen>
+    <dimen name="margin_xl">20dp</dimen>
+    <dimen name="margin_2xl">24dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="text_xs">10sp</dimen>
+    <dimen name="text_sm">12sp</dimen>
+    <dimen name="text_base">14sp</dimen>
+    <dimen name="text_lg">16sp</dimen>
+    <dimen name="text_xl">18sp</dimen>
+    <dimen name="text_2xl">20sp</dimen>
+    <dimen name="text_3xl">24sp</dimen>
+    <dimen name="text_4xl">28sp</dimen>
+    <dimen name="text_5xl">32sp</dimen>
+
+    <!-- Typography styles -->
+    <dimen name="headline_size">28sp</dimen>
+    <dimen name="title_size">20sp</dimen>
+    <dimen name="subtitle_size">16sp</dimen>
+    <dimen name="body_size">14sp</dimen>
+    <dimen name="label_size">12sp</dimen>
+    <dimen name="caption_size">10sp</dimen>
+
+    <!-- Corner radius -->
+    <dimen name="radius_sm">4dp</dimen>
+    <dimen name="radius_md">8dp</dimen>
+    <dimen name="radius_lg">12dp</dimen>
+    <dimen name="radius_xl">16dp</dimen>
+    <dimen name="radius_2xl">20dp</dimen>
+    <dimen name="radius_full">999dp</dimen>
+
+    <!-- Button sizes -->
+    <dimen name="button_height_sm">32dp</dimen>
+    <dimen name="button_height_md">40dp</dimen>
+    <dimen name="button_height_lg">48dp</dimen>
+    <dimen name="button_padding_horizontal">16dp</dimen>
+
+    <!-- Input field sizes -->
+    <dimen name="input_height">40dp</dimen>
+    <dimen name="input_padding_horizontal">12dp</dimen>
+    <dimen name="input_padding_vertical">8dp</dimen>
+
+    <!-- Card sizes -->
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_radius">12dp</dimen>
+
+    <!-- Image sizes -->
+    <dimen name="pet_image_height">200dp</dimen>
+    <dimen name="pet_card_image_height">180dp</dimen>
+    <dimen name="avatar_size">48dp</dimen>
+    <dimen name="avatar_size_lg">64dp</dimen>
+    <dimen name="avatar_size_sm">32dp</dimen>
+    <dimen name="icon_size_sm">16dp</dimen>
+    <dimen name="icon_size_md">24dp</dimen>
+    <dimen name="icon_size_lg">32dp</dimen>
+
+    <!-- Divider -->
+    <dimen name="divider_height">1dp</dimen>
+
+    <!-- Status badge -->
+    <dimen name="badge_padding">6dp</dimen>
+    <dimen name="badge_radius">4dp</dimen>
+
+    <!-- List item height -->
+    <dimen name="list_item_height">56dp</dimen>
+
+    <!-- Dialog sizes -->
+    <dimen name="dialog_width_percent">90</dimen>
+
+    <!-- Stroke width -->
+    <dimen name="stroke_width_thin">1dp</dimen>
+    <dimen name="stroke_width_normal">2dp</dimen>
+</resources>

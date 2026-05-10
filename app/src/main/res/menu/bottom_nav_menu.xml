@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_home"
+        android:title="@string/nav_home"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/nav_browse"
+        android:icon="@drawable/ic_search"
+        android:title="@string/nav_browse"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/nav_my_pets"
+        android:icon="@drawable/ic_pets"
+        android:title="@string/nav_my_pets"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/nav_trades"
+        android:icon="@drawable/ic_trades"
+        android:title="@string/nav_trades"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/nav_profile"
+        app:showAsAction="always" />
+
+</menu>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pm_market_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_market_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/btnCancelForm"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:drawableStart="@drawable/ic_arrow_back"
+                android:drawablePadding="6dp"
+                android:gravity="center_vertical"
+                android:text="Cancel"
+                android:textColor="@color/pm_market_muted"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/create_listing_title"
+                android:textColor="@color/pm_market_text"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="List your pet on the marketplace"
+                android:textColor="@color/pm_market_muted"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_panel_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pet Information"
+                    android:textColor="@color/pm_market_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="@string/pet_name_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:singleLine="true"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/species_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSpecies"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:singleLine="true"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/breed_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBreed"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:singleLine="true"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/age_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/description_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/image_url_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etImageUrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:inputType="textUri"
+                        android:singleLine="true"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_panel_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Listing Type"
+                    android:textColor="@color/pm_market_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="@string/filter_type_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/ddListingType"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:inputType="none"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/price_hint"
+                    app:boxCornerRadiusBottomEnd="9dp"
+                    app:boxCornerRadiusBottomStart="9dp"
+                    app:boxCornerRadiusTopEnd="9dp"
+                    app:boxCornerRadiusTopStart="9dp"
+                    app:prefixText="$ ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancelBottom"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_outline_button"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/pm_market_muted"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_primary_button"
+                    android:text="@string/create_listing_submit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:indeterminateTint="@color/pm_market_primary"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

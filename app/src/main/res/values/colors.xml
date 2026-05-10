@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Neutral colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary brand color (Blue) -->
+    <color name="primary_50">#EFF6FF</color>
+    <color name="primary_100">#DBEAFE</color>
+    <color name="primary_200">#BFDBFE</color>
+    <color name="primary_300">#93C5FD</color>
+    <color name="primary_400">#60A5FA</color>
+    <color name="primary_500">#3B82F6</color>
+    <color name="primary_600">#2563EB</color>
+    <color name="primary_700">#1D4ED8</color>
+    <color name="primary_800">#1E40AF</color>
+    <color name="primary_900">#1E3A8A</color>
+
+    <!-- Secondary color (Emerald/Green) -->
+    <color name="secondary_50">#F0FDF4</color>
+    <color name="secondary_100">#DCFCE7</color>
+    <color name="secondary_200">#BBF7D0</color>
+    <color name="secondary_300">#86EFAC</color>
+    <color name="secondary_400">#4ADE80</color>
+    <color name="secondary_500">#22C55E</color>
+    <color name="secondary_600">#16A34A</color>
+    <color name="secondary_700">#15803D</color>
+    <color name="secondary_800">#166534</color>
+    <color name="secondary_900">#145231</color>
+
+    <!-- Error/Red -->
+    <color name="error_50">#FEF2F2</color>
+    <color name="error_100">#FEE2E2</color>
+    <color name="error_200">#FECACA</color>
+    <color name="error_300">#FCA5A5</color>
+    <color name="error_400">#F87171</color>
+    <color name="error_500">#EF4444</color>
+    <color name="error_600">#DC2626</color>
+    <color name="error_700">#B91C1C</color>
+    <color name="error_800">#991B1B</color>
+    <color name="error_900">#7F1D1D</color>
+
+    <!-- Success (green variant) -->
+    <color name="success_50">#F0FDF4</color>
+    <color name="success_100">#DCFCE7</color>
+    <color name="success_200">#BBF7D0</color>
+    <color name="success_300">#86EFAC</color>
+    <color name="success_500">#22C55E</color>
+    <color name="success_600">#16A34A</color>
+
+    <!-- Warning/Amber -->
+    <color name="warning_50">#FFFBEB</color>
+    <color name="warning_100">#FEF3C7</color>
+    <color name="warning_200">#FDE68A</color>
+    <color name="warning_300">#FCD34D</color>
+    <color name="warning_400">#FBBF24</color>
+    <color name="warning_500">#F59E0B</color>
+    <color name="warning_600">#D97706</color>
+
+    <!-- Info/Cyan -->
+    <color name="info_50">#ECFDF5</color>
+    <color name="info_100">#D1FAE5</color>
+    <color name="info_200">#A7F3D0</color>
+    <color name="info_300">#6EE7B7</color>
+    <color name="info_500">#14B8A6</color>
+    <color name="info_600">#0D9488</color>
+
+    <!-- Gray scale -->
+    <color name="gray_50">#F9FAFB</color>
+    <color name="gray_100">#F3F4F6</color>
+    <color name="gray_200">#E5E7EB</color>
+    <color name="gray_300">#D1D5DB</color>
+    <color name="gray_400">#9CA3AF</color>
+    <color name="gray_500">#6B7280</color>
+    <color name="gray_600">#4B5563</color>
+    <color name="gray_700">#374151</color>
+    <color name="gray_800">#1F2937</color>
+    <color name="gray_900">#111827</color>
+
+    <!-- Semantic colors -->
+    <color name="bg_primary">@color/white</color>
+    <color name="bg_secondary">@color/gray_50</color>
+    <color name="bg_tertiary">@color/gray_100</color>
+
+    <color name="text_primary">@color/gray_900</color>
+    <color name="text_secondary">@color/gray_600</color>
+    <color name="text_tertiary">@color/gray_500</color>
+    <color name="text_on_primary">@color/white</color>
+    <color name="text_disabled">@color/gray_400</color>
+
+    <color name="border_default">@color/gray_200</color>
+    <color name="border_muted">@color/gray_100</color>
+    <color name="border_dark">@color/gray_300</color>
+
+    <!-- Status colors -->
+    <color name="status_success">@color/secondary_600</color>
+    <color name="status_pending">@color/warning_500</color>
+    <color name="status_error">@color/error_600</color>
+    <color name="status_info">@color/info_600</color>
+
+    <!-- Legacy PM colors (maintained for compatibility) -->
+    <color name="pm_auth_bg">#EEF8FF</color>
+    <color name="pm_auth_card_border">#CDE7F7</color>
+    <color name="pm_auth_shadow_tint">#140EA5E9</color>
+    <color name="pm_primary">#38BDF8</color>
+    <color name="pm_primary_hover">#22B7F0</color>
+    <color name="pm_primary_text_on">#FFFFFFFF</color>
+    <color name="pm_title_dark">#143047</color>
+    <color name="pm_subtle_text">#54758C</color>
+    <color name="pm_field_border">#CAE2F2</color>
+    <color name="pm_focus_ring">#6038BDF8</color>
+    <color name="pm_market_bg">#F8FAFC</color>
+    <color name="pm_panel_border">#DBE3EC</color>
+    <color name="pm_market_text">#111827</color>
+    <color name="pm_market_muted">#6B7280</color>
+    <color name="pm_market_primary">#2563EB</color>
+    <color name="pm_market_primary_dark">#1D4ED8</color>
+    <color name="pm_error">#DC2626</color>
+
+    <!-- Overlay colors -->
+    <color name="overlay_dark">@color/black</color>
+    <color name="overlay_light">@color/white</color>
+</resources>

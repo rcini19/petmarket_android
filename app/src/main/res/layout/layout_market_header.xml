@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/marketHeaderRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="2dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="14dp">
+
+        <FrameLayout
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_icon_chip">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_pets"
+                app:tint="@color/pm_market_primary" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:textColor="@color/pm_market_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/headerAvatarContainer"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_avatar_circle">
+
+            <ImageView
+                android:id="@+id/ivHeaderAvatar"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="@string/action_profile"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvHeaderAvatar"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:gravity="center"
+                android:text="D"
+                android:textColor="@color/pm_market_primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/btnHeaderLogout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/logout"
+            android:padding="9dp"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/gray_600" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:overScrollMode="never"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/navDashboardPill"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_nav_pill"
+                android:drawableStart="@drawable/ic_home"
+                android:drawablePadding="7dp"
+                android:drawableTint="@color/nav_pill_text"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="14dp"
+                android:text="@string/nav_home"
+                android:textColor="@color/nav_pill_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/navBrowsePill"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_nav_pill"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="7dp"
+                android:drawableTint="@color/nav_pill_text"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="14dp"
+                android:text="@string/nav_browse"
+                android:textColor="@color/nav_pill_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/navMyPetsPill"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_nav_pill"
+                android:drawableStart="@drawable/ic_pets"
+                android:drawablePadding="7dp"
+                android:drawableTint="@color/nav_pill_text"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="14dp"
+                android:text="@string/nav_my_pets"
+                android:textColor="@color/nav_pill_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/navTradesPill"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_nav_pill"
+                android:drawableStart="@drawable/ic_trades"
+                android:drawablePadding="7dp"
+                android:drawableTint="@color/nav_pill_text"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="14dp"
+                android:text="@string/nav_trades"
+                android:textColor="@color/nav_pill_text"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>
