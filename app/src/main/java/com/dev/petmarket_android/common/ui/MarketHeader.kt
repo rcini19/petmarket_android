@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.dev.petmarket_android.MainActivity
 import com.dev.petmarket_android.R
+import com.dev.petmarket_android.admin.AdminActivity
 import com.dev.petmarket_android.common.storage.SessionManager
 import com.dev.petmarket_android.dashboard.DashboardActivity
 import com.dev.petmarket_android.pets.BrowsePetsActivity
@@ -59,6 +60,9 @@ object MarketHeader {
         setupPill(activity, R.id.navBrowsePill, R.id.nav_browse, BrowsePetsActivity::class.java, currentNavItemId)
         setupPill(activity, R.id.navMyPetsPill, R.id.nav_my_pets, MyPetsActivity::class.java, currentNavItemId)
         setupPill(activity, R.id.navTradesPill, R.id.nav_trades, TradesActivity::class.java, currentNavItemId)
+        activity.findViewById<View?>(R.id.navAdminPill)?.visibility =
+            if (session.getRole().equals("ADMIN", ignoreCase = true)) View.VISIBLE else View.GONE
+        setupPill(activity, R.id.navAdminPill, R.id.nav_admin, AdminActivity::class.java, currentNavItemId)
     }
 
     private fun setupPill(

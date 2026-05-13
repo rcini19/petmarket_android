@@ -21,16 +21,14 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <TextView
+            <ImageView
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/bg_logo_badge"
-                android:gravity="center"
-                android:text="PM"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:contentDescription="@string/app_name"
+                android:padding="12dp"
+                android:src="@drawable/ic_petmarket_paw" />
 
             <TextView
                 android:layout_width="wrap_content"

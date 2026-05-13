@@ -31,7 +31,7 @@ class TradeRepository(context: Context) {
     ) {
         ApiExecutor.executeWithFallback(
             endpoints = listOf("/api/trade-offers", "/api/trades", "/trade-offers", "/trades"),
-            callFactory = { endpoint -> api.getTradeOffers(endpoint, page, pageSize) },
+            callFactory = { endpoint -> api.getTradeOffers(endpoint, emptyMap(), page, pageSize) },
             onSuccess = onSuccess,
             onFailure = onFailure
         )

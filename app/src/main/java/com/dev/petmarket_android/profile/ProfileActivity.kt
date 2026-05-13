@@ -43,8 +43,8 @@ class ProfileActivity : BaseBottomNavActivity<ActivityProfileBinding>(), Profile
         binding.rvTrades.isNestedScrollingEnabled = false
 
         val session = SessionManager(applicationContext)
-        binding.tvFullName.text = session.getFullName().orEmpty().ifBlank { getString(R.string.profile_unknown_name) }
-        binding.tvEmail.text = getString(R.string.profile_unknown_email)
+        binding.tvFullName.text = "Full Name\n${session.getFullName().orEmpty().ifBlank { getString(R.string.profile_unknown_name) }}"
+        binding.tvEmail.text = "Email\n${session.getEmail().orEmpty().ifBlank { getString(R.string.profile_unknown_email) }}"
         binding.tvRole.text = session.getRole()
         binding.tvAccountTypeValue.text = session.getRole()
         binding.tvMemberSinceValue.text = "-"
@@ -117,8 +117,8 @@ class ProfileActivity : BaseBottomNavActivity<ActivityProfileBinding>(), Profile
             profileImageUrl = profileImageUrl
         )
 
-        binding.tvFullName.text = name
-        binding.tvEmail.text = email
+        binding.tvFullName.text = "Full Name\n$name"
+        binding.tvEmail.text = "Email\n$email"
         binding.tvRole.text = role
         binding.tvAccountTypeValue.text = profile.accountType.orEmpty().ifBlank { role }
         binding.tvMemberSinceValue.text = profile.memberSince.orEmpty().ifBlank { "-" }

@@ -23,17 +23,14 @@
             android:orientation="vertical"
             android:padding="@dimen/card_padding">
 
-            <TextView
+            <ImageView
                 android:layout_width="@dimen/avatar_size_lg"
                 android:layout_height="@dimen/avatar_size_lg"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/bg_logo_badge"
                 android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:text="PM"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_xl"
-                android:textStyle="bold" />
+                android:padding="14dp"
+                android:src="@drawable/ic_petmarket_paw" />
 
             <TextView
                 android:layout_width="wrap_content"

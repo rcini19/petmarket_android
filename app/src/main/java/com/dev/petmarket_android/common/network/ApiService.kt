@@ -59,6 +59,7 @@ interface ApiService {
     @GET
     fun getTradeOffers(
         @Url endpoint: String,
+        @QueryMap params: Map<String, String> = emptyMap(),
         @Query("page") page: Int = 0,
         @Query("pageSize") pageSize: Int = 20
     ): Call<PaginatedResponse<TradeOfferResponse>>
@@ -104,6 +105,13 @@ interface ApiService {
         @Query("pageSize") pageSize: Int = 20
     ): Call<List<OrderHistoryResponse>>
 
+    @GET
+    fun getOrderHistoryRaw(
+        @Url endpoint: String,
+        @Query("page") page: Int = 0,
+        @Query("pageSize") pageSize: Int = 100
+    ): Call<ResponseBody>
+
     // Trade history with pagination
     @GET
     fun getTradeHistory(
@@ -111,6 +119,13 @@ interface ApiService {
         @Query("page") page: Int = 0,
         @Query("pageSize") pageSize: Int = 20
     ): Call<List<TradeOfferResponse>>
+
+    @GET
+    fun getTradeHistoryRaw(
+        @Url endpoint: String,
+        @Query("page") page: Int = 0,
+        @Query("pageSize") pageSize: Int = 100
+    ): Call<ResponseBody>
 
     // Admin endpoints with pagination
     @GET

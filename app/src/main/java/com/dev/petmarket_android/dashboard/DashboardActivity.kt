@@ -43,11 +43,14 @@ class DashboardActivity : BaseBottomNavActivity<ActivityDashboardBinding>(), Das
         binding.btnProfile.setOnClickListener { presenter.onProfileClicked() }
         binding.btnAdminPanel.setOnClickListener { presenter.onAdminPanelClicked() }
         binding.btnLogout.setOnClickListener { presenter.onLogoutClicked() }
-
-        presenter.loadDashboard()
     }
 
     override fun getCurrentNavItemId(): Int = R.id.nav_dashboard
+
+    override fun onResume() {
+        super.onResume()
+        presenter.loadDashboard()
+    }
 
     override fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

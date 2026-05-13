@@ -43,10 +43,8 @@ class ProfileModel(private val repository: ProfileRepository) {
                 completeOne()
             },
             onFailure = {
-                if (!failed) {
-                    failed = true
-                    onFailure(it)
-                }
+                orders = emptyList()
+                completeOne()
             }
         )
 
@@ -56,10 +54,8 @@ class ProfileModel(private val repository: ProfileRepository) {
                 completeOne()
             },
             onFailure = {
-                if (!failed) {
-                    failed = true
-                    onFailure(it)
-                }
+                trades = emptyList()
+                completeOne()
             }
         )
     }

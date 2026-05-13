@@ -12,51 +12,51 @@ class DashboardModel(private val repository: DashboardRepository) {
         var pendingTrades = 0
         var myPets = 0
         var completed = 0
-        var failed = false
+        var successes = 0
+        var lastError: String? = null
 
         fun completeOne() {
             completed += 1
-            if (completed == 3 && !failed) {
+            if (completed == 3 && successes > 0) {
                 onSuccess(availablePets, pendingTrades, myPets)
+            } else if (completed == 3) {
+                onFailure(lastError ?: "Unable to load dashboard activity")
             }
         }
 
-        repository.getAvailablePets(
-            onSuccess = { pets ->
-                availablePets = pets.size
+        repository.getAvailablePetsCount(
+            onSuccess = { count ->
+                availablePets = count
+                successes += 1
                 completeOne()
             },
             onFailure = { error ->
-                if (!failed) {
-                    failed = true
-                    onFailure(error)
-                }
+                lastError = error
+                completeOne()
             }
         )
 
-        repository.getMyActivePets(
-            onSuccess = { pets ->
-                myPets = pets.size
+        repository.getMyPetsCount(
+            onSuccess = { count ->
+                myPets = count
+                successes += 1
                 completeOne()
             },
             onFailure = { error ->
-                if (!failed) {
-                    failed = true
-                    onFailure(error)
-                }
+                lastError = error
+                completeOne()
             }
         )
 
-        repository.getTradeOffers(
-            onSuccess = { offers ->
-                pendingTrades = offers.count { (it.status ?: "").equals("PENDING", ignoreCase = true) }
+        repository.getPendingTradeOffersCount(
+            onSuccess = { count ->
+                pendingTrades = count
+                successes += 1
                 completeOne()
             },
             onFailure = { error ->
-                if (!failed) {
-                    failed = true
-                    onFailure(error)
-                }
+                lastError = error
+                completeOne()
             }
         )
     }

@@ -28,6 +28,7 @@ class AdminPetAdapter(
 
     class AdminPetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvName = itemView.findViewById<TextView>(R.id.tvName)
+        private val tvBreed = itemView.findViewById<TextView>(R.id.tvBreed)
         private val tvOwner = itemView.findViewById<TextView>(R.id.tvOwner)
         private val tvType = itemView.findViewById<TextView>(R.id.tvType)
         private val tvPrice = itemView.findViewById<TextView>(R.id.tvPrice)
@@ -36,10 +37,13 @@ class AdminPetAdapter(
 
         fun bind(item: PetResponse, onDelete: (Long) -> Unit) {
             tvName.text = item.name.orEmpty().ifBlank { "Unnamed Pet" }
+            tvBreed.text = item.breed.orEmpty().ifBlank { item.species.orEmpty().ifBlank { "-" } }
             tvOwner.text = item.ownerName.orEmpty().ifBlank { "Unknown owner" }
             tvType.text = item.listingType.orEmpty().ifBlank { "UNKNOWN" }
             tvPrice.text = item.price?.let { "$${"%.0f".format(it)}" } ?: "-"
-            tvStatus.text = item.status.orEmpty().ifBlank { "UNKNOWN" }
+            tvStatus.text = item.status.orEmpty()
+                .ifBlank { "available" }
+                .lowercase()
             btnDelete.setOnClickListener { onDelete(item.id) }
         }
     }

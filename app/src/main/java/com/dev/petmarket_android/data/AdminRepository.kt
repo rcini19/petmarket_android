@@ -16,7 +16,7 @@ class AdminRepository(context: Context) {
         onSuccess: (List<PetResponse>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        getAdminPetsWithPagination(0, 20, { response ->
+        getAdminPetsWithPagination(0, ADMIN_PAGE_SIZE, { response ->
             onSuccess(response.content)
         }, onFailure)
     }
@@ -54,7 +54,7 @@ class AdminRepository(context: Context) {
         onSuccess: (List<AdminUserResponse>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        getAdminUsersWithPagination(0, 20, { response ->
+        getAdminUsersWithPagination(0, ADMIN_PAGE_SIZE, { response ->
             onSuccess(response.content)
         }, onFailure)
     }
@@ -85,5 +85,9 @@ class AdminRepository(context: Context) {
             onSuccess = onSuccess,
             onFailure = onFailure
         )
+    }
+
+    private companion object {
+        const val ADMIN_PAGE_SIZE = 100
     }
 }

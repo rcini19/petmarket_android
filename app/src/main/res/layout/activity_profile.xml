@@ -82,20 +82,28 @@
                         <TextView
                             android:id="@+id/tvFullName"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="56dp"
+                            android:background="@drawable/bg_field_soft"
                             android:ellipsize="end"
-                            android:maxLines="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
                             android:textColor="@color/pm_market_text"
-                            android:textSize="20sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvEmail"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_field_soft"
                             android:ellipsize="end"
-                            android:maxLines="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
                             android:textColor="@color/pm_market_muted"
                             android:textSize="13sp" />
 
@@ -183,11 +191,13 @@
 
                 <TextView
                     android:id="@+id/btnEditProfile"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="46dp"
                     android:layout_marginTop="18dp"
                     android:background="@drawable/bg_primary_button"
                     android:gravity="center"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
                     android:text="Edit Profile"
                     android:textColor="@color/white"
                     android:textSize="13sp"

@@ -162,25 +162,59 @@
                         android:textSize="13sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:hint="@string/image_url_hint"
-                    app:boxCornerRadiusBottomEnd="9dp"
-                    app:boxCornerRadiusBottomStart="9dp"
-                    app:boxCornerRadiusTopEnd="9dp"
-                    app:boxCornerRadiusTopStart="9dp">
+                    android:text="@string/pet_image_label"
+                    android:textColor="@color/pm_market_text"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etImageUrl"
+                <FrameLayout
+                    android:id="@+id/petImagePreviewContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="178dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_field_soft">
+
+                    <ImageView
+                        android:id="@+id/ivSelectedPetImage"
                         android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:inputType="textUri"
-                        android:singleLine="true"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/pet_image_label"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/tvPetImagePlaceholder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/no_pet_image_selected"
+                        android:textColor="@color/pm_market_muted"
                         android:textSize="13sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/btnSelectPetImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_outline_button"
+                    android:text="@string/select_pet_photo"
+                    android:textAllCaps="false"
+                    android:textColor="@color/pm_market_primary"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvSelectedImageName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/pm_market_muted"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout

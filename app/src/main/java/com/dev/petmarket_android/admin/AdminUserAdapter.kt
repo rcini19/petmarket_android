@@ -31,6 +31,7 @@ class AdminUserAdapter(
         private val tvEmail = itemView.findViewById<TextView>(R.id.tvEmail)
         private val tvRole = itemView.findViewById<TextView>(R.id.tvRole)
         private val tvStatus = itemView.findViewById<TextView>(R.id.tvStatus)
+        private val tvJoined = itemView.findViewById<TextView>(R.id.tvJoined)
         private val tvActivity = itemView.findViewById<TextView>(R.id.tvActivity)
         private val btnSuspend = itemView.findViewById<Button>(R.id.btnSuspend)
 
@@ -40,14 +41,16 @@ class AdminUserAdapter(
             tvRole.text = item.role.orEmpty().ifBlank { "USER" }
 
             val suspended = item.suspended == true
-            tvStatus.text = if (suspended) "SUSPENDED" else "ACTIVE"
+            tvStatus.text = if (suspended) "suspended" else "active"
+            tvJoined.text = item.joinedAt.orEmpty().ifBlank { "-" }
 
             val orders = item.orders ?: item.purchases ?: 0
             val trades = item.tradeOffers ?: item.trades ?: 0
-            tvActivity.text = "$orders orders • $trades trade offers"
+            tvActivity.text = "$orders orders | $trades trade offers"
 
             val isAdmin = item.role.orEmpty().equals("ADMIN", ignoreCase = true)
             btnSuspend.isEnabled = !suspended && !isAdmin
+            btnSuspend.alpha = if (btnSuspend.isEnabled) 1f else 0.45f
             btnSuspend.setOnClickListener { onSuspend(item.id) }
         }
     }
