@@ -20,9 +20,24 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvTradeType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_icon_chip"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="@string/trade_type_incoming"
+                android:textColor="@color/pm_market_primary"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/tvOfferedBy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/pm_market_text"
@@ -63,6 +78,7 @@
         android:paddingEnd="14dp">
 
         <TextView
+            android:id="@+id/tvOfferedPetLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="They offer"
@@ -98,6 +114,7 @@
         android:paddingEnd="14dp">
 
         <TextView
+            android:id="@+id/tvRequestedPetLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="For your"
@@ -116,6 +133,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/rowTradeActions"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
@@ -127,7 +145,7 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@drawable/bg_outline_button"
-            android:text="Decline"
+            android:text="@string/reject"
             android:textAllCaps="false"
             android:textColor="@color/pm_market_muted"
             android:textSize="13sp" />
@@ -144,4 +162,16 @@
             android:textColor="@color/white"
             android:textSize="13sp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvActionState"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_field_soft"
+        android:gravity="center"
+        android:text="@string/trade_waiting_for_owner"
+        android:textColor="@color/pm_market_muted"
+        android:textSize="13sp"
+        android:visibility="gone" />
 </LinearLayout>

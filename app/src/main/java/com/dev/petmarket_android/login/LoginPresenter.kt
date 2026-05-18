@@ -34,7 +34,8 @@ class LoginPresenter(
                     email = response.email,
                     fullName = response.fullName,
                     role = response.role,
-                    profileImageUrl = response.resolvedProfileImageUrl
+                    profileImageUrl = response.resolvedProfileImageUrl,
+                    userId = response.id
                 )
                 model.loadProfile(
                     onSuccess = { profile ->
@@ -42,7 +43,8 @@ class LoginPresenter(
                             email = profile.email,
                             fullName = profile.fullName,
                             role = profile.role,
-                            profileImageUrl = profile.resolvedProfileImageUrl
+                            profileImageUrl = profile.resolvedProfileImageUrl,
+                            userId = profile.id
                         )
                         view?.showLoading(false)
                         view?.navigateToDashboard()

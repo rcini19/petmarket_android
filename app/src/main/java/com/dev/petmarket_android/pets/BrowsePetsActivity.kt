@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dev.petmarket_android.databinding.ActivityBrowsePetsBinding
 import com.dev.petmarket_android.common.model.PetResponse
+import com.dev.petmarket_android.common.storage.SessionManager
 import com.dev.petmarket_android.common.ui.BaseBottomNavActivity
+import com.dev.petmarket_android.common.util.PetListingRules
 import com.dev.petmarket_android.data.PetRepository
 import com.dev.petmarket_android.R
 
@@ -32,28 +34,54 @@ class BrowsePetsActivity : BaseBottomNavActivity<ActivityBrowsePetsBinding>(), B
         setupRecycler()
 
         binding.btnApplyFilter.setOnClickListener {
-            presenter.loadPets(
-                search = binding.etSearch.text?.toString().orEmpty(),
-                listingType = binding.ddFilterType.text?.toString().orEmpty().ifBlank { "ALL" }
-            )
+            loadPetsWithCurrentFilters()
         }
 
-        presenter.loadPets(search = "", listingType = "ALL")
+        showPurchaseSuccessIfPresent(intent)
     }
 
     override fun getCurrentNavItemId(): Int = R.id.nav_browse
 
+    override fun onResume() {
+        super.onResume()
+        loadPetsWithCurrentFilters()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        showPurchaseSuccessIfPresent(intent)
+    }
+
     private fun setupFilterDropdown() {
         val options = listOf("ALL", "SALE", "TRADE", "BOTH")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, options)
+        val adapter = ArrayAdapter(this, R.layout.item_role_dropdown, options)
         binding.ddFilterType.setAdapter(adapter)
         binding.ddFilterType.setText("ALL", false)
     }
 
     private fun setupRecycler() {
-        adapter = PetAdapter { petId -> presenter.onPetClicked(petId) }
+        val sessionManager = SessionManager(applicationContext)
+        adapter = PetAdapter(
+            isCurrentUserPet = { pet -> PetListingRules.isOwnedByCurrentUser(pet, sessionManager) },
+            onPetClicked = { petId -> presenter.onPetClicked(petId) }
+        )
         binding.rvPets.layoutManager = LinearLayoutManager(this)
         binding.rvPets.adapter = adapter
+    }
+
+    private fun loadPetsWithCurrentFilters() {
+        presenter.loadPets(
+            search = binding.etSearch.text?.toString().orEmpty(),
+            listingType = binding.ddFilterType.text?.toString().orEmpty().ifBlank { "ALL" }
+        )
+    }
+
+    private fun showPurchaseSuccessIfPresent(intent: Intent?) {
+        val message = intent?.getStringExtra(EXTRA_PURCHASE_SUCCESS_MESSAGE)
+        binding.tvPurchaseSuccess.text = message.orEmpty()
+        binding.tvPurchaseSuccess.visibility = if (message.isNullOrBlank()) View.GONE else View.VISIBLE
+        intent?.removeExtra(EXTRA_PURCHASE_SUCCESS_MESSAGE)
     }
 
     override fun showLoading(isLoading: Boolean) {
@@ -79,5 +107,9 @@ class BrowsePetsActivity : BaseBottomNavActivity<ActivityBrowsePetsBinding>(), B
     override fun onDestroy() {
         presenter.onDestroy()
         super.onDestroy()
+    }
+
+    companion object {
+        const val EXTRA_PURCHASE_SUCCESS_MESSAGE = "extra_purchase_success_message"
     }
 }

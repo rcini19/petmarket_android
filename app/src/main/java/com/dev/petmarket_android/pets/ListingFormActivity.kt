@@ -119,7 +119,7 @@ class ListingFormActivity : AppCompatActivity(), ListingFormContract.View {
 
     private fun setupListingTypeDropdown() {
         val types = listOf("SALE", "TRADE", "BOTH")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, types)
+        val adapter = ArrayAdapter(this, R.layout.item_role_dropdown, types)
         ddListingType.setAdapter(adapter)
         ddListingType.setText("SALE", false)
     }

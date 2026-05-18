@@ -13,11 +13,4 @@
     </style>
 
     <style name="Theme.Petmarket_android" parent="Base.Theme.Petmarket_android" />
-
-    <style name="AdminTableHeaderText">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/pm_market_muted</item>
-        <item name="android:textSize">11sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
 </resources>

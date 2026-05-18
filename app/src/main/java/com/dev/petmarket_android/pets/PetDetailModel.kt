@@ -1,6 +1,5 @@
 package com.dev.petmarket_android.pets
 
-import com.dev.petmarket_android.common.model.OrderResponse
 import com.dev.petmarket_android.common.model.PetResponse
 import com.dev.petmarket_android.data.PetRepository
 
@@ -17,9 +16,9 @@ class PetDetailModel(private val repository: PetRepository) {
     fun createOrder(
         petId: Long,
         totalPrice: Double,
-        onSuccess: (OrderResponse) -> Unit,
+        onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
-        repository.createOrder(petId, totalPrice, onSuccess, onFailure)
+        repository.purchasePet(petId, totalPrice, onSuccess, onFailure)
     }
 }

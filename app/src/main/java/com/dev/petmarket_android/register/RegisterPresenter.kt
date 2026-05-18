@@ -49,14 +49,11 @@ class RegisterPresenter(
                     email = response.email,
                     fullName = response.fullName,
                     role = response.role,
-                    profileImageUrl = response.resolvedProfileImageUrl
+                    profileImageUrl = response.resolvedProfileImageUrl,
+                    userId = response.id
                 )
                 view?.showSuccess(response.message ?: "Registration successful")
-                if (response.role.equals("ADMIN", ignoreCase = true)) {
-                    view?.navigateToAdminPanel()
-                } else {
-                    view?.navigateToDashboard()
-                }
+                view?.navigateToDashboard()
             },
             onFailure = { message ->
                 view?.showLoading(false)

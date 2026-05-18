@@ -4,32 +4,70 @@ import com.google.gson.annotations.SerializedName
 
 data class PetResponse(
     @SerializedName("id") val id: Long,
-    @SerializedName("name") val name: String?,
-    @SerializedName("species") val species: String?,
-    @SerializedName("breed") val breed: String?,
-    @SerializedName("age") val age: Int?,
-    @SerializedName("listingType") val listingType: String?,
-    @SerializedName("price") val price: Double?,
-    @SerializedName("description") val description: String?,
-    @SerializedName("imageUrl") val imageUrl: String?,
-    @SerializedName("ownerName") val ownerName: String?,
-    @SerializedName("status") val status: String?
+    @SerializedName("name") val name: String? = null,
+    @SerializedName("species") val species: String? = null,
+    @SerializedName("breed") val breed: String? = null,
+    @SerializedName("age") val age: Int? = null,
+    @SerializedName("listingType") val listingType: String? = null,
+    @SerializedName("price") val price: Double? = null,
+    @SerializedName("description") val description: String? = null,
+    @SerializedName("imageUrl") val imageUrl: String? = null,
+    @SerializedName(value = "ownerId", alternate = ["owner_id", "userId", "user_id", "sellerId", "seller_id"]) val ownerId: Long? = null,
+    @SerializedName(value = "owner", alternate = ["user", "seller"]) val owner: PetOwnerResponse? = null,
+    @SerializedName(value = "ownerName", alternate = ["ownerFullName", "sellerName", "userName"]) val ownerName: String? = null,
+    @SerializedName(value = "ownerEmail", alternate = ["owner_email", "sellerEmail", "userEmail"]) val ownerEmail: String? = null,
+    @SerializedName(value = "ownerUsername", alternate = ["ownerUserName", "username", "sellerUsername"]) val ownerUsername: String? = null,
+    @SerializedName(value = "ownedByCurrentUser", alternate = ["isOwner", "mine", "ownedByMe"]) val ownedByCurrentUser: Boolean? = null,
+    @SerializedName("status") val status: String? = null
+)
+
+data class PetOwnerResponse(
+    @SerializedName(value = "id", alternate = ["userId", "user_id"]) val id: Long? = null,
+    @SerializedName(value = "fullName", alternate = ["name", "displayName"]) val fullName: String? = null,
+    @SerializedName(value = "username", alternate = ["userName"]) val username: String? = null,
+    @SerializedName("email") val email: String? = null
 )
 
 data class TradeOfferResponse(
     @SerializedName("id") val id: Long,
-    @SerializedName("offeredPetId") val offeredPetId: Long? = null,
-    @SerializedName("requestedPetId") val requestedPetId: Long? = null,
-    @SerializedName("offeredPetName") val offeredPetName: String? = null,
-    @SerializedName("requestedPetName") val requestedPetName: String? = null,
-    @SerializedName("offeringUserName") val offeringUserName: String? = null,
+    @SerializedName(value = "offeredPetId", alternate = ["offered_pet_id", "offerPetId", "sourcePetId"]) val offeredPetId: Long? = null,
+    @SerializedName(value = "requestedPetId", alternate = ["requested_pet_id", "requestPetId", "targetPetId"]) val requestedPetId: Long? = null,
+    @SerializedName(value = "offeredPet", alternate = ["offered", "offerPet", "sourcePet"]) val offeredPet: PetResponse? = null,
+    @SerializedName(value = "requestedPet", alternate = ["requested", "requestPet", "targetPet"]) val requestedPet: PetResponse? = null,
+    @SerializedName(value = "offeredPetName", alternate = ["offered_pet_name", "offerPetName", "sourcePetName"]) val offeredPetName: String? = null,
+    @SerializedName(value = "requestedPetName", alternate = ["requested_pet_name", "requestPetName", "targetPetName"]) val requestedPetName: String? = null,
+    @SerializedName(value = "offeringUserId", alternate = ["offering_user_id", "offerById", "offeredById"]) val offeringUserId: Long? = null,
+    @SerializedName(value = "offeringUser", alternate = ["offerByUser", "offeredByUser"]) val offeringUser: PetOwnerResponse? = null,
+    @SerializedName(value = "offeringUserName", alternate = ["offerBy", "offeredBy", "offerByName", "offeredByName"]) val offeringUserName: String? = null,
+    @SerializedName(value = "offeredPetOwnerId", alternate = ["offeredOwnerId", "offered_pet_owner_id"]) val offeredPetOwnerId: Long? = null,
+    @SerializedName(value = "offeredPetOwnerName", alternate = ["offeredOwnerName"]) val offeredPetOwnerName: String? = null,
+    @SerializedName(value = "requestedPetOwnerId", alternate = ["requestedOwnerId", "requested_pet_owner_id", "targetOwnerId"]) val requestedPetOwnerId: Long? = null,
+    @SerializedName(value = "requestedPetOwnerName", alternate = ["requestedOwnerName", "targetOwnerName"]) val requestedPetOwnerName: String? = null,
+    @SerializedName(value = "direction", alternate = ["type"]) val direction: String? = null,
+    @SerializedName(value = "needsResponse", alternate = ["requiresResponse"]) val needsResponse: Boolean? = null,
     @SerializedName("status") val status: String? = null,
     @SerializedName("createdAt") val createdAt: String? = null,
+    @SerializedName("respondedAt") val respondedAt: String? = null,
     @SerializedName("title") val title: String? = null,
     @SerializedName("subtitle") val subtitle: String? = null,
     @SerializedName("date") val date: String? = null,
     @SerializedName("amount") val amount: Double? = null
-)
+) {
+    val resolvedOfferedPetId: Long?
+        get() = offeredPetId ?: offeredPet?.id
+
+    val resolvedRequestedPetId: Long?
+        get() = requestedPetId ?: requestedPet?.id
+
+    val resolvedOfferedPetName: String?
+        get() = firstNonBlank(offeredPetName, offeredPet?.name)
+
+    val resolvedRequestedPetName: String?
+        get() = firstNonBlank(requestedPetName, requestedPet?.name)
+
+    val resolvedOfferingUserName: String?
+        get() = firstNonBlank(offeringUserName, offeringUser?.fullName, offeringUser?.username, offeringUser?.email)
+}
 
 data class TradeOfferRequest(
     @SerializedName("offeredPetId") val offeredPetId: Long,
@@ -59,7 +97,7 @@ data class PetRequest(
 )
 
 data class ProfileResponse(
-    @SerializedName("id") val id: Long? = null,
+    @SerializedName(value = "id", alternate = ["userId", "user_id"]) val id: Long? = null,
     @SerializedName("fullName") val fullName: String? = null,
     @SerializedName("email") val email: String? = null,
     @SerializedName("role") val role: String? = null,
@@ -106,19 +144,6 @@ data class OrderHistoryResponse(
     @SerializedName("amount") val amount: Double? = null,
     @SerializedName("createdAt") val createdAt: String? = null,
     @SerializedName("date") val date: String? = null
-)
-
-data class AdminUserResponse(
-    @SerializedName("id") val id: Long,
-    @SerializedName("fullName") val fullName: String? = null,
-    @SerializedName("email") val email: String? = null,
-    @SerializedName("role") val role: String? = null,
-    @SerializedName("suspended") val suspended: Boolean? = null,
-    @SerializedName("joinedAt") val joinedAt: String? = null,
-    @SerializedName("orders") val orders: Int? = null,
-    @SerializedName("purchases") val purchases: Int? = null,
-    @SerializedName("tradeOffers") val tradeOffers: Int? = null,
-    @SerializedName("trades") val trades: Int? = null
 )
 
 private fun firstNonBlank(vararg values: String?): String? {

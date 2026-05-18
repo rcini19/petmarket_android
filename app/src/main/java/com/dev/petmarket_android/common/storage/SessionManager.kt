@@ -1,6 +1,7 @@
 package com.dev.petmarket_android.common.storage
 
 import android.content.Context
+import com.dev.petmarket_android.common.security.JwtUtils
 
 class SessionManager(context: Context) {
 
@@ -11,23 +12,32 @@ class SessionManager(context: Context) {
         email: String?,
         fullName: String?,
         role: String?,
-        profileImageUrl: String? = null
+        profileImageUrl: String? = null,
+        userId: Long? = null
     ) {
-        prefs.edit()
-            .putString(KEY_TOKEN, token)
-            .putString(KEY_EMAIL, email)
-            .putString(KEY_FULL_NAME, fullName)
-            .putString(KEY_ROLE, role)
-            .putString(KEY_PROFILE_IMAGE_URL, profileImageUrl)
-            .apply()
+        prefs.edit().apply {
+            putString(KEY_TOKEN, token)
+            putString(KEY_EMAIL, email)
+            putString(KEY_FULL_NAME, fullName)
+            putString(KEY_ROLE, role)
+            putString(KEY_PROFILE_IMAGE_URL, profileImageUrl)
+            userId?.let { putLong(KEY_USER_ID, it) } ?: remove(KEY_USER_ID)
+        }.apply()
     }
 
-    fun updateProfile(email: String?, fullName: String?, role: String?, profileImageUrl: String?) {
+    fun updateProfile(
+        email: String?,
+        fullName: String?,
+        role: String?,
+        profileImageUrl: String?,
+        userId: Long? = null
+    ) {
         prefs.edit().apply {
             email?.let { putString(KEY_EMAIL, it) }
             fullName?.let { putString(KEY_FULL_NAME, it) }
             role?.let { putString(KEY_ROLE, it) }
             profileImageUrl?.let { putString(KEY_PROFILE_IMAGE_URL, it) }
+            userId?.let { putLong(KEY_USER_ID, it) }
         }.apply()
     }
 
@@ -40,6 +50,11 @@ class SessionManager(context: Context) {
     fun getEmail(): String? = prefs.getString(KEY_EMAIL, null)
 
     fun getFullName(): String? = prefs.getString(KEY_FULL_NAME, null)
+
+    fun getUserId(): Long? {
+        val stored = prefs.getLong(KEY_USER_ID, NO_USER_ID)
+        return stored.takeIf { it != NO_USER_ID } ?: JwtUtils.extractUserId(getToken())
+    }
 
     fun getRole(): String = prefs.getString(KEY_ROLE, "USER") ?: "USER"
 
@@ -56,5 +71,7 @@ class SessionManager(context: Context) {
         private const val KEY_FULL_NAME = "full_name"
         private const val KEY_ROLE = "role"
         private const val KEY_PROFILE_IMAGE_URL = "profile_image_url"
+        private const val KEY_USER_ID = "user_id"
+        private const val NO_USER_ID = -1L
     }
 }

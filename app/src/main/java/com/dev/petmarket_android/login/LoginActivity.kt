@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.dev.petmarket_android.R
 import com.dev.petmarket_android.databinding.ActivityLoginBinding
 import com.dev.petmarket_android.common.storage.SessionManager
 import com.dev.petmarket_android.common.ui.BaseViewBindingActivity
@@ -42,7 +43,7 @@ class LoginActivity : BaseViewBindingActivity<ActivityLoginBinding>(), LoginCont
 
     private fun setupLoginAsDropdown() {
         val options = listOf("USER", "ADMIN")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, options)
+        val adapter = ArrayAdapter(this, R.layout.item_role_dropdown, options)
         binding.ddLoginAs.setAdapter(adapter)
         binding.ddLoginAs.setText("USER", false)
     }

@@ -59,6 +59,23 @@ object ApiExecutor {
         )
     }
 
+    fun executeStatusAcrossFallbacks(
+        endpoints: List<String>,
+        callFactory: (String) -> Call<ResponseBody>,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        attemptStatusAcrossFallbacks(
+            index = 0,
+            endpoints = endpoints,
+            callFactory = callFactory,
+            onSuccess = onSuccess,
+            onFailure = onFailure,
+            retryCount = 0,
+            lastError = null
+        )
+    }
+
     private fun <T> attempt(
         index: Int,
         endpoints: List<String>,
@@ -245,6 +262,93 @@ object ApiExecutor {
                 }
 
                 onFailure(t.message ?: "Network request failed")
+            }
+        })
+    }
+
+    private fun attemptStatusAcrossFallbacks(
+        index: Int,
+        endpoints: List<String>,
+        callFactory: (String) -> Call<ResponseBody>,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit,
+        retryCount: Int,
+        lastError: String?
+    ) {
+        if (index >= endpoints.size) {
+            onFailure(lastError ?: "Request failed after all attempts")
+            return
+        }
+
+        callFactory(endpoints[index]).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    onSuccess()
+                    return
+                }
+
+                val status = response.code()
+                val errorMessage = response.errorBody()?.string() ?: "Request failed (HTTP $status)"
+
+                if (isRetryableStatus(status) && retryCount < MAX_RETRY_ATTEMPTS) {
+                    scheduleRetry(
+                        retryCount = retryCount + 1,
+                        block = {
+                            attemptStatusAcrossFallbacks(
+                                index,
+                                endpoints,
+                                callFactory,
+                                onSuccess,
+                                onFailure,
+                                retryCount + 1,
+                                errorMessage
+                            )
+                        }
+                    )
+                    return
+                }
+
+                attemptStatusAcrossFallbacks(
+                    index = index + 1,
+                    endpoints = endpoints,
+                    callFactory = callFactory,
+                    onSuccess = onSuccess,
+                    onFailure = onFailure,
+                    retryCount = 0,
+                    lastError = errorMessage
+                )
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                val errorMessage = t.message ?: "Network request failed"
+
+                if (retryCount < MAX_RETRY_ATTEMPTS) {
+                    scheduleRetry(
+                        retryCount = retryCount + 1,
+                        block = {
+                            attemptStatusAcrossFallbacks(
+                                index,
+                                endpoints,
+                                callFactory,
+                                onSuccess,
+                                onFailure,
+                                retryCount + 1,
+                                errorMessage
+                            )
+                        }
+                    )
+                    return
+                }
+
+                attemptStatusAcrossFallbacks(
+                    index = index + 1,
+                    endpoints = endpoints,
+                    callFactory = callFactory,
+                    onSuccess = onSuccess,
+                    onFailure = onFailure,
+                    retryCount = 0,
+                    lastError = errorMessage
+                )
             }
         })
     }

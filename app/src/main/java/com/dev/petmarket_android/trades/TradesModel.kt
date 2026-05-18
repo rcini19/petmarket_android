@@ -14,13 +14,24 @@ class TradesModel(private val repository: TradeRepository) {
         var myPets: List<PetResponse> = emptyList()
         var tradeablePets: List<PetResponse> = emptyList()
         var completed = 0
-        var failed = false
+        var failedRequests = 0
+        var lastError: String? = null
 
         fun completeOne() {
             completed += 1
-            if (!failed && completed == 3) {
-                onSuccess(offers, myPets, tradeablePets)
+            if (completed == 3) {
+                if (failedRequests == 3) {
+                    onFailure(lastError ?: "Unable to load trade data")
+                } else {
+                    onSuccess(offers, myPets, tradeablePets)
+                }
             }
+        }
+
+        fun completeFailed(message: String) {
+            failedRequests += 1
+            lastError = message
+            completeOne()
         }
 
         repository.getTradeOffers(
@@ -29,10 +40,7 @@ class TradesModel(private val repository: TradeRepository) {
                 completeOne()
             },
             onFailure = {
-                if (!failed) {
-                    failed = true
-                    onFailure(it)
-                }
+                completeFailed(it)
             }
         )
 
@@ -42,10 +50,7 @@ class TradesModel(private val repository: TradeRepository) {
                 completeOne()
             },
             onFailure = {
-                if (!failed) {
-                    failed = true
-                    onFailure(it)
-                }
+                completeFailed(it)
             }
         )
 
@@ -55,10 +60,7 @@ class TradesModel(private val repository: TradeRepository) {
                 completeOne()
             },
             onFailure = {
-                if (!failed) {
-                    failed = true
-                    onFailure(it)
-                }
+                completeFailed(it)
             }
         )
     }
@@ -72,7 +74,7 @@ class TradesModel(private val repository: TradeRepository) {
         repository.createTradeOffer(
             offeredPetId = offeredPetId,
             requestedPetId = requestedPetId,
-            onSuccess = { onSuccess() },
+            onSuccess = onSuccess,
             onFailure = onFailure
         )
     }

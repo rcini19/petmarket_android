@@ -7,7 +7,6 @@ interface RegisterContract {
         fun showError(message: String)
         fun showSuccess(message: String)
         fun navigateToDashboard()
-        fun navigateToAdminPanel()
         fun navigateToLogin()
     }
 

@@ -155,22 +155,6 @@
                 android:textColor="@color/nav_pill_text"
                 android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/navAdminPill"
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_nav_pill"
-                android:drawableStart="@drawable/ic_admin_line"
-                android:drawablePadding="7dp"
-                android:drawableTint="@color/nav_pill_text"
-                android:gravity="center"
-                android:paddingStart="12dp"
-                android:paddingEnd="14dp"
-                android:text="@string/nav_admin"
-                android:textColor="@color/nav_pill_text"
-                android:textSize="13sp"
-                android:visibility="gone" />
         </LinearLayout>
     </HorizontalScrollView>
 </LinearLayout>

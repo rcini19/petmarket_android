@@ -13,7 +13,6 @@ import com.dev.petmarket_android.common.model.ProfileUpdateRequest
 import com.dev.petmarket_android.common.model.PetRequest
 import com.dev.petmarket_android.common.model.PetResponse
 import com.dev.petmarket_android.common.model.RegisterRequest
-import com.dev.petmarket_android.common.model.AdminUserResponse
 import com.dev.petmarket_android.common.model.TradeOfferRequest
 import com.dev.petmarket_android.common.model.TradeOfferResponse
 import com.dev.petmarket_android.common.model.PaginatedResponse
@@ -66,6 +65,12 @@ interface ApiService {
 
     @POST
     fun createOrder(@Url endpoint: String, @Body body: OrderRequest): Call<OrderResponse>
+
+    @POST
+    fun purchasePet(@Url endpoint: String, @Body body: OrderRequest): Call<ResponseBody>
+
+    @POST
+    fun purchasePet(@Url endpoint: String): Call<ResponseBody>
 
     @POST
     fun createPet(@Url endpoint: String, @Body body: PetRequest): Call<PetResponse>
@@ -127,24 +132,4 @@ interface ApiService {
         @Query("pageSize") pageSize: Int = 100
     ): Call<ResponseBody>
 
-    // Admin endpoints with pagination
-    @GET
-    fun getAdminPets(
-        @Url endpoint: String,
-        @Query("page") page: Int = 0,
-        @Query("pageSize") pageSize: Int = 20
-    ): Call<PaginatedResponse<PetResponse>>
-
-    @DELETE
-    fun deleteAdminPet(@Url endpoint: String): Call<ResponseBody>
-
-    @GET
-    fun getAdminUsers(
-        @Url endpoint: String,
-        @Query("page") page: Int = 0,
-        @Query("pageSize") pageSize: Int = 20
-    ): Call<PaginatedResponse<AdminUserResponse>>
-
-    @PUT
-    fun suspendAdminUser(@Url endpoint: String): Call<ResponseBody>
 }

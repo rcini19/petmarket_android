@@ -77,6 +77,21 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tvPetOwnershipNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_field_soft"
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            android:text="@string/your_pet_browse_notice"
+            android:textColor="@color/pm_market_muted"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/tvPetStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

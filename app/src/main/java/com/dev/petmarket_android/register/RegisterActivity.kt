@@ -11,7 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.petmarket_android.R
-import com.dev.petmarket_android.admin.AdminActivity
 import com.dev.petmarket_android.common.storage.SessionManager
 import com.dev.petmarket_android.dashboard.DashboardActivity
 import com.dev.petmarket_android.data.UserRepository
@@ -70,7 +69,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
 
     private fun setupRegisterAsDropdown() {
         val options = listOf("USER", "ADMIN")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, options)
+        val adapter = ArrayAdapter(this, R.layout.item_role_dropdown, options)
         ddRegisterAs.setAdapter(adapter)
         ddRegisterAs.setText("USER", false)
     }
@@ -90,12 +89,6 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
 
     override fun navigateToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-    }
-
-    override fun navigateToAdminPanel() {
-        val intent = Intent(this, AdminActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }

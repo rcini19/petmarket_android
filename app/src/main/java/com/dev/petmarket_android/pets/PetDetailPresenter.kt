@@ -1,10 +1,13 @@
 package com.dev.petmarket_android.pets
 
 import com.dev.petmarket_android.common.model.PetResponse
+import com.dev.petmarket_android.common.storage.SessionManager
+import com.dev.petmarket_android.common.util.PetListingRules
 
 class PetDetailPresenter(
     private var view: PetDetailContract.View?,
-    private val model: PetDetailModel
+    private val model: PetDetailModel,
+    private val sessionManager: SessionManager
 ) : PetDetailContract.Presenter {
 
     private var currentPet: PetResponse? = null
@@ -32,11 +35,14 @@ class PetDetailPresenter(
             return
         }
 
-        val listingType = pet.listingType.orEmpty().uppercase()
-        val status = pet.status.orEmpty().uppercase()
         val price = pet.price
 
-        if ((listingType != "SALE" && listingType != "BOTH") || status != "AVAILABLE" || price == null || price <= 0.0) {
+        if (PetListingRules.isOwnedByCurrentUser(pet, sessionManager)) {
+            view?.showError("You cannot purchase your own pet")
+            return
+        }
+
+        if (!PetListingRules.supportsPurchase(pet) || !PetListingRules.isAvailable(pet) || price == null || price <= 0.0) {
             view?.showError("This listing is not purchasable")
             return
         }
@@ -45,9 +51,10 @@ class PetDetailPresenter(
         model.createOrder(
             petId = pet.id,
             totalPrice = price,
-            onSuccess = { order ->
+            onSuccess = {
                 view?.showLoading(false)
-                val message = "Order #${order.id} completed"
+                val petName = pet.name.orEmpty().ifBlank { "this pet" }
+                val message = "Congratulations! You've purchased $petName for $${"%.0f".format(price)}."
                 view?.showPurchaseSuccess(message)
             },
             onFailure = { error ->

@@ -17,6 +17,7 @@ data class RegisterRequest(
 )
 
 data class AuthResponse(
+    @SerializedName(value = "id", alternate = ["userId", "user_id"]) val id: Long? = null,
     @SerializedName("token") val token: String?,
     @SerializedName("email") val email: String?,
     @SerializedName("fullName") val fullName: String?,

@@ -40,9 +40,6 @@
             android:name=".profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminActivity"
-            android:exported="false" />
-        <activity
             android:name=".pets.BrowsePetsActivity"
             android:exported="false" />
         <activity

@@ -83,4 +83,23 @@ object JwtUtils {
             false
         }
     }
+
+    fun extractUserId(token: String?): Long? {
+        return try {
+            val normalized = token?.trim()?.removeSurrounding("\"").orEmpty()
+            val payloadJson = decodeBase64Part(normalized.split(".").getOrNull(1) ?: return null)
+            val payload = JSONObject(payloadJson)
+            listOf("id", "userId", "user_id", "uid", "sub")
+                .firstNotNullOfOrNull { key ->
+                    val value = payload.opt(key)
+                    when (value) {
+                        is Number -> value.toLong()
+                        is String -> value.toLongOrNull()
+                        else -> null
+                    }
+                }
+        } catch (e: Exception) {
+            null
+        }
+    }
 }

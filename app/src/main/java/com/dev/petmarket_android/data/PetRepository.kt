@@ -79,6 +79,42 @@ class PetRepository(context: Context) {
         )
     }
 
+    fun purchasePet(
+        petId: Long,
+        totalPrice: Double,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        val payload = OrderRequest(petId = petId, totalPrice = totalPrice)
+        ApiExecutor.executeStatusAcrossFallbacks(
+            endpoints = listOf(
+                "/api/pets/$petId/purchase",
+                "/api/pets/$petId/buy",
+                "/pets/$petId/purchase",
+                "/pets/$petId/buy"
+            ),
+            callFactory = { endpoint -> api.purchasePet(endpoint) },
+            onSuccess = onSuccess,
+            onFailure = {
+                ApiExecutor.executeStatusAcrossFallbacks(
+                    endpoints = listOf(
+                        "/api/pets/$petId/purchase",
+                        "/api/pets/$petId/buy",
+                        "/api/purchases",
+                        "/api/orders",
+                        "/pets/$petId/purchase",
+                        "/pets/$petId/buy",
+                        "/purchases",
+                        "/orders"
+                    ),
+                    callFactory = { endpoint -> api.purchasePet(endpoint, payload) },
+                    onSuccess = onSuccess,
+                    onFailure = onFailure
+                )
+            }
+        )
+    }
+
     // Original method for backward compatibility
     fun getMyPets(
         onSuccess: (List<PetResponse>) -> Unit,

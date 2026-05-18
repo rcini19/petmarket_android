@@ -200,10 +200,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_outline_button"
+                    android:background="@drawable/bg_primary_button"
+                    android:backgroundTint="@color/pm_market_primary"
                     android:text="@string/select_pet_photo"
                     android:textAllCaps="false"
-                    android:textColor="@color/pm_market_primary"
+                    android:textColor="@color/white"
                     android:textSize="13sp" />
 
                 <TextView
@@ -286,9 +287,10 @@
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_outline_button"
+                    android:backgroundTint="@color/white"
                     android:text="Cancel"
                     android:textAllCaps="false"
-                    android:textColor="@color/pm_market_muted"
+                    android:textColor="@color/pm_market_primary"
                     android:textSize="13sp" />
 
                 <Button

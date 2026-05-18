@@ -13,7 +13,6 @@ interface DashboardContract {
         fun navigateToMyPets()
         fun navigateToTrades()
         fun navigateToProfile()
-        fun navigateToAdminPanel()
         fun navigateToLogin()
     }
 
@@ -24,7 +23,6 @@ interface DashboardContract {
         fun onTradeOffersClicked()
         fun onMyPetsClicked()
         fun onProfileClicked()
-        fun onAdminPanelClicked()
         fun onLogoutClicked()
         fun onDestroy()
     }

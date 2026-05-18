@@ -56,10 +56,6 @@ class DashboardPresenter(
         view?.navigateToProfile()
     }
 
-    override fun onAdminPanelClicked() {
-        view?.navigateToAdminPanel()
-    }
-
     override fun onLogoutClicked() {
         sessionManager.clearSession()
         view?.navigateToLogin()

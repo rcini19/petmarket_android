@@ -114,7 +114,8 @@ class ProfileActivity : BaseBottomNavActivity<ActivityProfileBinding>(), Profile
             email = profile.email,
             fullName = profile.fullName,
             role = profile.role,
-            profileImageUrl = profileImageUrl
+            profileImageUrl = profileImageUrl,
+            userId = profile.id
         )
 
         binding.tvFullName.text = "Full Name\n$name"

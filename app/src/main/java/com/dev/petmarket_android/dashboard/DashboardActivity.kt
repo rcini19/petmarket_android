@@ -3,15 +3,11 @@ package com.dev.petmarket_android.dashboard
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.dev.petmarket_android.MainActivity
 import com.dev.petmarket_android.R
 import com.dev.petmarket_android.common.storage.SessionManager
 import com.dev.petmarket_android.data.DashboardRepository
-import com.dev.petmarket_android.admin.AdminActivity
 import com.dev.petmarket_android.pets.BrowsePetsActivity
 import com.dev.petmarket_android.pets.ListingFormActivity
 import com.dev.petmarket_android.pets.MyPetsActivity
@@ -41,7 +37,6 @@ class DashboardActivity : BaseBottomNavActivity<ActivityDashboardBinding>(), Das
         binding.btnTradeOffers.setOnClickListener { presenter.onTradeOffersClicked() }
         binding.btnMyPets.setOnClickListener { presenter.onMyPetsClicked() }
         binding.btnProfile.setOnClickListener { presenter.onProfileClicked() }
-        binding.btnAdminPanel.setOnClickListener { presenter.onAdminPanelClicked() }
         binding.btnLogout.setOnClickListener { presenter.onLogoutClicked() }
     }
 
@@ -63,10 +58,8 @@ class DashboardActivity : BaseBottomNavActivity<ActivityDashboardBinding>(), Das
     override fun showHeader(fullName: String, role: String) {
         binding.tvGreeting.text = getString(R.string.dashboard_overview_title)
         binding.tvRole.text = getString(R.string.dashboard_overview_desc)
-
-        val isAdmin = role.equals("ADMIN", ignoreCase = true)
-        binding.btnAdminPanel.visibility = if (isAdmin) View.VISIBLE else View.GONE
-        binding.tvAdminHint.visibility = if (isAdmin) View.VISIBLE else View.GONE
+        binding.tvAdminWebsiteNotice.visibility =
+            if (role.equals("ADMIN", ignoreCase = true)) View.VISIBLE else View.GONE
     }
 
     override fun showStats(availablePets: Int, pendingTrades: Int, myPets: Int) {
@@ -97,10 +90,6 @@ class DashboardActivity : BaseBottomNavActivity<ActivityDashboardBinding>(), Das
 
     override fun navigateToProfile() {
         startActivity(Intent(this, ProfileActivity::class.java))
-    }
-
-    override fun navigateToAdminPanel() {
-        startActivity(Intent(this, AdminActivity::class.java))
     }
 
     override fun navigateToLogin() {
